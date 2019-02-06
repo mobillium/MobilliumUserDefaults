@@ -1,0 +1,16 @@
+PODS:
+  - MobilliumUserDefaults (0.1.0)
+
+DEPENDENCIES:
+  - MobilliumUserDefaults (from `../`)
+
+EXTERNAL SOURCES:
+  MobilliumUserDefaults:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MobilliumUserDefaults: d7e786c0dbba0f1876261350c0139c6a3cbb2563
+
+PODFILE CHECKSUM: d22f8afa8f12343a67c94201df1338488a2dea8d
+
+COCOAPODS: 1.5.3

@@ -20,10 +20,6 @@ it, simply add the following line to your Podfile:
 pod 'MobilliumUserDefaults'
 ```
 
-## Author
-
-aslanmehmetsalih, aslanmehmetsalih@hotmail.com
-
 ## License
 
 MobilliumUserDefaults is available under the MIT license. See the LICENSE file for more info.
