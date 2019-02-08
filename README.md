@@ -5,11 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/MobilliumUserDefaults.svg?style=flat)](https://cocoapods.org/pods/MobilliumUserDefaults)
 [![Platform](https://img.shields.io/cocoapods/p/MobilliumUserDefaults.svg?style=flat)](https://cocoapods.org/pods/MobilliumUserDefaults)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Requirements
+- iOS 8.0+
 
 ## Installation
 
@@ -19,6 +16,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'MobilliumUserDefaults'
 ```
+
+## Usage
 
 Set defaults(optional):
 ```swift
