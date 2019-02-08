@@ -20,6 +20,55 @@ it, simply add the following line to your Podfile:
 pod 'MobilliumUserDefaults'
 ```
 
+Set defaults(optional):
+```swift
+Defaults = UserDefaults.standard // or default is UserDefaults.standard
+```
+
+Create you DefaultsKey:
+```swift
+import MobilliumUserDefaults
+
+extension DefaultsKey {
+    static let stringKey = Key<String>(key: "stringKey")
+    static let intKey = Key<Int>(key: "intKey")
+    static let boolKey = Key<Bool>(key: "boolKey")
+    static let doubleKey = Key<Double>(key: "doubleKey")
+    static let dateKey = Key<Date>(key: "dateKey")
+    static let arrayKey = Key<[String]>(key: "arrayKey")
+}
+```
+
+Save value:
+```swift
+let value = "string"
+DefaultsKey.stringKey.value = value
+```
+
+Get value:
+```swift
+let value = DefaultsKey.stringKey.value
+```
+
+Check value:
+```swift
+if DefaultsKey.stringKey.has { 
+    //
+}
+```
+
+Remove value:
+```swift
+DefaultsKey.stringKey.value = nil
+//or
+DefaultsKey.stringKey.remove()
+```
+
+Remove all values:
+```swift
+Defaults.removeAll()
+```
+
 ## License
 
 MobilliumUserDefaults is available under the MIT license. See the LICENSE file for more info.
