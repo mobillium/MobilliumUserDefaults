@@ -141,6 +141,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -170,21 +171,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MobilliumUserDefaults_Tests/Pods-MobilliumUserDefaults_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MobilliumUserDefaults_Tests/Pods-MobilliumUserDefaults_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MobilliumUserDefaults/MobilliumUserDefaults.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobilliumUserDefaults.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilliumUserDefaults_Tests/Pods-MobilliumUserDefaults_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobilliumUserDefaults_Tests/Pods-MobilliumUserDefaults_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E51896CEE3A7E75BB21C8C14 /* [CP] Check Pods Manifest.lock */ = {

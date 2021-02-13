@@ -9,4 +9,19 @@ import Foundation
 
 public var Defaults = UserDefaults.standard
 
-public extension UserDefaults { }
+public extension UserDefaults {
+    /// Removes a values using 'keys'
+    func remove<ValueType: Codable>(_ keys: [Key<ValueType>]) {
+        for key in keys {
+            removeObject(forKey: key.key)
+        }
+        synchronize()
+    }
+    /// Removes all values from user defaults
+    func removeAll() {
+        for (key, _) in dictionaryRepresentation() {
+            removeObject(forKey: key)
+        }
+        synchronize()
+    }
+}
