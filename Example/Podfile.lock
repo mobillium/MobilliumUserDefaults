@@ -1,5 +1,5 @@
 PODS:
-  - MobilliumUserDefaults (0.1.0)
+  - MobilliumUserDefaults (1.0.0)
 
 DEPENDENCIES:
   - MobilliumUserDefaults (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MobilliumUserDefaults: d7e786c0dbba0f1876261350c0139c6a3cbb2563
+  MobilliumUserDefaults: 12a7b2f313ca01af2d5a81af889f32dc8a5bcf13
 
 PODFILE CHECKSUM: d22f8afa8f12343a67c94201df1338488a2dea8d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.0

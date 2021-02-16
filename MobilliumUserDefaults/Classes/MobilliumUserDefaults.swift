@@ -10,13 +10,16 @@ import Foundation
 public var Defaults = UserDefaults.standard
 
 public extension UserDefaults {
-    
     /// Removes a values using 'keys'
-    func remove(_ keys: [Key<Any>]) {
+    func remove<ValueType: Codable>(_ keys: [Key<ValueType>]) {
         for key in keys {
             removeObject(forKey: key.key)
-            
         }
+        synchronize()
+    }
+    
+    func remove<ValueType: Codable>(_ key: Key<ValueType>) {
+        removeObject(forKey: key.key)
         synchronize()
     }
     
@@ -27,5 +30,4 @@ public extension UserDefaults {
         }
         synchronize()
     }
-    
 }

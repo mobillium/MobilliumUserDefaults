@@ -1,6 +1,21 @@
 import XCTest
 import MobilliumUserDefaults
 
+struct Person: Codable {
+    let name: String
+    let age: Int
+    let weight: Double
+    let height: Int
+    let job: Job
+}
+
+struct Job: Codable {
+    let name: String
+    let address: String
+    let position: String
+    let yearsOfExprience: Int
+}
+
 extension DefaultsKey {
     static let stringKey = Key<String>(key: "stringKey")
     static let intKey = Key<Int>(key: "intKey")
@@ -8,10 +23,10 @@ extension DefaultsKey {
     static let doubleKey = Key<Double>(key: "doubleKey")
     static let dateKey = Key<Date>(key: "dateKey")
     static let arrayKey = Key<[String]>(key: "arrayKey")
+    static let personKey = Key<Person>(key: "codableKey")
 }
 
 class Tests: XCTestCase {
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,14 +40,11 @@ class Tests: XCTestCase {
     func testString() {
         // Value
         let value = "string"
-        
         // Save
         DefaultsKey.stringKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.stringKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.stringKey.value
         XCTAssertEqual(savedValue, value)
@@ -41,14 +53,11 @@ class Tests: XCTestCase {
     func testInt() {
         // Value
         let value = 1903
-        
         // Save
         DefaultsKey.intKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.intKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.intKey.value
         XCTAssertEqual(savedValue, value)
@@ -58,14 +67,11 @@ class Tests: XCTestCase {
         // Value
         let value = 999.9
         Defaults = UserDefaults.standard
-        
         // Save
         DefaultsKey.doubleKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.doubleKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.doubleKey.value
         XCTAssertEqual(savedValue, value)
@@ -74,14 +80,11 @@ class Tests: XCTestCase {
     func testBool() {
         // Value
         let value = true
-        
         // Save
         DefaultsKey.boolKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.boolKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.boolKey.value
         XCTAssertEqual(savedValue, value)
@@ -90,14 +93,11 @@ class Tests: XCTestCase {
     func testDate() {
         // Value
         let value = Date()
-        
         // Save
         DefaultsKey.dateKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.dateKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.dateKey.value
         XCTAssertEqual(savedValue, value)
@@ -106,17 +106,56 @@ class Tests: XCTestCase {
     func testArray() {
         // Value
         let value = ["row 0", "row 1", "row 2", "row 3", "row 4", "row 5"]
-        
         // Save
         DefaultsKey.arrayKey.value = value
-        
         // Check
         let hasKey = DefaultsKey.arrayKey.has
         XCTAssertTrue(hasKey)
-        
         // Equal
         let savedValue = DefaultsKey.arrayKey.value
         XCTAssertEqual(savedValue, value)
     }
     
+    func testCodableObject() {
+        // Value
+        let job = Job(name: "Mobillium",
+                      address: "Beyoğlu",
+                      position: "IOS Developer",
+                      yearsOfExprience: 1)
+        
+        let person = Person(name: "Emir",
+                           age: 27,
+                           weight: 100.5,
+                           height: 193,
+                           job: job)
+        // Save
+        DefaultsKey.personKey.value = person
+        // Check
+        let hasKey = DefaultsKey.personKey.has
+        XCTAssertTrue(hasKey)
+        let savedJob = DefaultsKey.personKey.value?.job
+        XCTAssertEqual(savedJob!.name, job.name)
+        // Equal
+        let savedValue = DefaultsKey.personKey.value
+        XCTAssertEqual(savedValue!.name, person.name)
+        // Nil
+        DefaultsKey.personKey.value = nil
+        XCTAssertNil(DefaultsKey.personKey.value)
+        XCTAssertFalse(DefaultsKey.personKey.has)
+        // Save
+        DefaultsKey.personKey.value = person
+        XCTAssertTrue(DefaultsKey.personKey.has)
+        XCTAssertNotNil(DefaultsKey.personKey.value)
+        // Remove
+        DefaultsKey.personKey.remove()
+        XCTAssertFalse(DefaultsKey.personKey.has)
+        XCTAssertNil(DefaultsKey.personKey.value)
+    }
+    
+    func testSingleRemove() {
+        DefaultsKey.boolKey.value = true
+        Defaults.remove(.boolKey)
+        XCTAssertNil(DefaultsKey.boolKey.value)
+        XCTAssertFalse(DefaultsKey.boolKey.has)
+    }
 }
