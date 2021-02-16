@@ -7,9 +7,8 @@ Pod::Spec.new do |s|
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'mobillium' => 'info@mobillium.com' }
     s.source           = { :git => 'https://github.com/mobillium/MobilliumUserDefaults.git', :tag => s.version.to_s }
-    s.social_media_url = 'https://twitter.com/mobillium'
     
-    s.ios.deployment_target = '8.0'
+    s.ios.deployment_target = '9.0'
     s.swift_version = '5.0'
     
     s.source_files = 'MobilliumUserDefaults/Classes/**/*'
