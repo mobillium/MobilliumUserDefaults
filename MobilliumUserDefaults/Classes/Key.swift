@@ -16,44 +16,51 @@ public class Key<ValueType: Codable>: DefaultsKey {
     
     public var value: ValueType? {
         set {
-            guard newValue != nil else {
-                remove()
-                return
-            }
-            
-            if isSwiftCodableType(ValueType.self) || isFoundationCodableType(ValueType.self) {
-                Defaults.set(newValue, forKey: key)
-                return
-            }
-            do {
-                let encoder = JSONEncoder()
-                let encoded = try encoder.encode(newValue)
-                Defaults.set(encoded, forKey: key)
-                Defaults.synchronize()
-            } catch {
-                #if DEBUG
-                print(error)
-                #endif
-            }
+            self.set(newValue: newValue)
         }
         get {
-            if isSwiftCodableType(ValueType.self) || isFoundationCodableType(ValueType.self) {
-                return Defaults.value(forKey: key) as? ValueType
-            }
-            guard let data = Defaults.data(forKey: key) else {
-                return nil
-            }
-            do {
-                let decoder = JSONDecoder()
-                let decoded = try decoder.decode(ValueType.self, from: data)
-                return decoded
-            } catch {
-                #if DEBUG
-                print(error)
-                #endif
-            }
+            self.get()
+        }
+    }
+    
+    private func set(newValue: ValueType?) {
+        guard newValue != nil else {
+            remove()
+            return
+        }
+        if isSwiftCodableType(ValueType.self) || isFoundationCodableType(ValueType.self) {
+            Defaults.set(newValue, forKey: key)
+            return
+        }
+        do {
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(newValue)
+            Defaults.set(encoded, forKey: key)
+            Defaults.synchronize()
+        } catch {
+            #if DEBUG
+            print(error)
+            #endif
+        }
+    }
+    
+    private func get() -> ValueType? {
+        if isSwiftCodableType(ValueType.self) || isFoundationCodableType(ValueType.self) {
+            return Defaults.value(forKey: key) as? ValueType
+        }
+        guard let data = Defaults.data(forKey: key) else {
             return nil
         }
+        do {
+            let decoder = JSONDecoder()
+            let decoded = try decoder.decode(ValueType.self, from: data)
+            return decoded
+        } catch {
+            #if DEBUG
+            print(error)
+            #endif
+        }
+        return nil
     }
     
     /// Removes a value using 'key'
