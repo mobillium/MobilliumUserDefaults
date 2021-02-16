@@ -23,7 +23,7 @@ extension DefaultsKey {
     static let doubleKey = Key<Double>(key: "doubleKey")
     static let dateKey = Key<Date>(key: "dateKey")
     static let arrayKey = Key<[String]>(key: "arrayKey")
-    static let codableKey = Key<Person>(key: "codableKey")
+    static let personKey = Key<Person>(key: "codableKey")
 }
 
 class Tests: XCTestCase {
@@ -31,10 +31,12 @@ class Tests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
     func testString() {
         // Value
         let value = "string"
@@ -47,6 +49,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.stringKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testInt() {
         // Value
         let value = 1903
@@ -59,6 +62,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.intKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testDouble() {
         // Value
         let value = 999.9
@@ -72,6 +76,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.doubleKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testBool() {
         // Value
         let value = true
@@ -84,6 +89,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.boolKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testDate() {
         // Value
         let value = Date()
@@ -96,6 +102,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.dateKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testArray() {
         // Value
         let value = ["row 0", "row 1", "row 2", "row 3", "row 4", "row 5"]
@@ -108,6 +115,7 @@ class Tests: XCTestCase {
         let savedValue = DefaultsKey.arrayKey.value
         XCTAssertEqual(savedValue, value)
     }
+    
     func testCodableObject() {
         // Value
         let job = Job(name: "Mobillium",
@@ -121,20 +129,33 @@ class Tests: XCTestCase {
                            height: 193,
                            job: job)
         // Save
-        DefaultsKey.codableKey.value = person
+        DefaultsKey.personKey.value = person
         // Check
-        let hasKey = DefaultsKey.codableKey.has
+        let hasKey = DefaultsKey.personKey.has
         XCTAssertTrue(hasKey)
-        let savedJob = DefaultsKey.codableKey.value?.job
+        let savedJob = DefaultsKey.personKey.value?.job
         XCTAssertEqual(savedJob!.name, job.name)
         // Equal
-        let savedValue = DefaultsKey.codableKey.value
+        let savedValue = DefaultsKey.personKey.value
         XCTAssertEqual(savedValue!.name, person.name)
         // Nil
-        DefaultsKey.codableKey.value = nil
-        XCTAssertFalse(DefaultsKey.codableKey.has)
+        DefaultsKey.personKey.value = nil
+        XCTAssertNil(DefaultsKey.personKey.value)
+        XCTAssertFalse(DefaultsKey.personKey.has)
+        // Save
+        DefaultsKey.personKey.value = person
+        XCTAssertTrue(DefaultsKey.personKey.has)
+        XCTAssertNotNil(DefaultsKey.personKey.value)
         // Remove
-        DefaultsKey.codableKey.remove()
-        XCTAssertFalse(DefaultsKey.codableKey.has)
+        DefaultsKey.personKey.remove()
+        XCTAssertFalse(DefaultsKey.personKey.has)
+        XCTAssertNil(DefaultsKey.personKey.value)
+    }
+    
+    func testSingleRemove() {
+        DefaultsKey.boolKey.value = true
+        Defaults.remove(.boolKey)
+        XCTAssertNil(DefaultsKey.boolKey.value)
+        XCTAssertFalse(DefaultsKey.boolKey.has)
     }
 }

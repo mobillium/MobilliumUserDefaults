@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'MobilliumUserDefaults'
-    s.version          = '1.0.0'
+    s.version          = '1.1.0'
     s.summary          = 'UserDefaults helper for iOS apps.'
     
     s.homepage         = 'https://github.com/mobillium/MobilliumUserDefaults'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.social_media_url = 'https://twitter.com/mobillium'
     
     s.ios.deployment_target = '8.0'
-    s.swift_version = '4.2'
+    s.swift_version = '5.0'
     
     s.source_files = 'MobilliumUserDefaults/Classes/**/*'
 end

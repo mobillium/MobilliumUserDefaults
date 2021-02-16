@@ -17,6 +17,12 @@ public extension UserDefaults {
         }
         synchronize()
     }
+    
+    func remove<ValueType: Codable>(_ key: Key<ValueType>) {
+        removeObject(forKey: key.key)
+        synchronize()
+    }
+    
     /// Removes all values from user defaults
     func removeAll() {
         for (key, _) in dictionaryRepresentation() {
