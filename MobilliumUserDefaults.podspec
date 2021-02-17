@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'MobilliumUserDefaults'
-    s.version          = '1.1.0'
+    s.version          = '2.0.0'
     s.summary          = 'UserDefaults helper for iOS apps.'
     
     s.homepage         = 'https://github.com/mobillium/MobilliumUserDefaults'
