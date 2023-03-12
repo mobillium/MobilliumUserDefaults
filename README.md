@@ -1,6 +1,6 @@
 # MobilliumUserDefaults
 
-[![CI Status](https://img.shields.io/travis/aslanmehmetsalih/MobilliumUserDefaults.svg?style=flat)](https://travis-ci.org/aslanmehmetsalih/MobilliumUserDefaults)
+[![Build Status](https://github.com/mobillium/MobilliumUserDefaults/actions/workflows/ci.yml/badge.svg)](https://github.com/mobillium/MobilliumUserDefaults/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/cocoapods/v/MobilliumUserDefaults.svg?style=flat)](https://cocoapods.org/pods/MobilliumUserDefaults)
 [![License](https://img.shields.io/cocoapods/l/MobilliumUserDefaults.svg?style=flat)](https://cocoapods.org/pods/MobilliumUserDefaults)
 [![Platform](https://img.shields.io/cocoapods/p/MobilliumUserDefaults.svg?style=flat)](https://cocoapods.org/pods/MobilliumUserDefaults)
