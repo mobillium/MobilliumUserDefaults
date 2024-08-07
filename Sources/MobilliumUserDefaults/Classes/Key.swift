@@ -76,7 +76,7 @@ public class Key<ValueType: Codable>: DefaultsKey {
     ///
     /// - Parameter type: The type.
     /// - Returns: A boolean value.
-    private func isSwiftCodableType<ValueType>(_ type: ValueType.Type) -> Bool {
+    private func isSwiftCodableType<T>(_ type: T.Type) -> Bool {
         switch type {
         case is String.Type, is Bool.Type, is Int.Type, is Float.Type, is Double.Type:
             return true
@@ -89,7 +89,7 @@ public class Key<ValueType: Codable>: DefaultsKey {
     ///
     /// - Parameter type: The type.
     /// - Returns: A boolean value.
-    private func isFoundationCodableType<ValueType>(_ type: ValueType.Type) -> Bool {
+    private func isFoundationCodableType<T>(_ type: T.Type) -> Bool {
         switch type {
         case is Date.Type:
             return true
